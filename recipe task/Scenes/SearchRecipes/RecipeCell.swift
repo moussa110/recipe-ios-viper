@@ -21,6 +21,7 @@ class RecipeCell: UITableViewCell , ConfigureRecipesCellProtocol {
     }
     
     func configure(viewModel: RecipeViewModel) {
+        
         recipeTitle.text = viewModel.title
         recipeSource.text = viewModel.source
         healthLabels.text = viewModel.healthLabels[0]
