@@ -31,7 +31,7 @@ class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProto
     
     func viewDidLoad() {
         print("view did load !!")
-        interactor.getRecipes()
+        
     }
     
     func recipesFetchedSuccessfully(recipes: RecipeModel) {
@@ -49,6 +49,11 @@ class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProto
         let viewModel = RecipeViewModel(recipe: recipe)
             cell.configure(viewModel: viewModel)
         }
+    }
+    
+    func searchRecipe(query q: String , health:Int) {
+        view?.showLoadingIndicator()
+        interactor.getRecipes(query:q , health:health)
     }
     
     

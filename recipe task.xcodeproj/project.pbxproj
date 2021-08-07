@@ -26,6 +26,7 @@
 		BA4012BC26BC1D1000573CC4 /* RecipesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4012BB26BC1D1000573CC4 /* RecipesRouter.swift */; };
 		BA4012BE26BC1D7F00573CC4 /* RecipesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4012BD26BC1D7F00573CC4 /* RecipesProtocols.swift */; };
 		BA4012C026BC481800573CC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4012BF26BC481800573CC4 /* Constants.swift */; };
+		BA5C178026BEDCFD005050F1 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = BA5C177F26BEDCFD005050F1 /* NVActivityIndicatorView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 			files = (
 				BA0DE29C26BD5DFD006C9BAB /* SDWebImage in Frameworks */,
 				BA1CB4D426BB471E009490AD /* Alamofire in Frameworks */,
+				BA5C178026BEDCFD005050F1 /* NVActivityIndicatorView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +236,7 @@
 			packageProductDependencies = (
 				BA1CB4D326BB471E009490AD /* Alamofire */,
 				BA0DE29B26BD5DFD006C9BAB /* SDWebImage */,
+				BA5C177F26BEDCFD005050F1 /* NVActivityIndicatorView */,
 			);
 			productName = "recipe task";
 			productReference = BA1CB49C26BB4577009490AD /* recipe task.app */;
@@ -309,6 +312,7 @@
 			packageReferences = (
 				BA1CB4D226BB471E009490AD /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BA0DE29A26BD5DFD006C9BAB /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				BA5C177E26BEDCFD005050F1 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 			);
 			productRefGroup = BA1CB49D26BB4577009490AD /* Products */;
 			projectDirPath = "";
@@ -709,6 +713,14 @@
 				minimumVersion = 5.4.3;
 			};
 		};
+		BA5C177E26BEDCFD005050F1 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -721,6 +733,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BA1CB4D226BB471E009490AD /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		BA5C177F26BEDCFD005050F1 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA5C177E26BEDCFD005050F1 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

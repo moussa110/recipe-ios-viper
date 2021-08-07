@@ -12,10 +12,17 @@ class NetworkHandler{
     
     func getRecipes(query q:String , health:String, compilation:@escaping(RecipeModel? ,Error?)->Void) {
         
-        let parameters:Parameters = ["q":"\(q)" ,
-                                     "app_id":"\(Constants.appId)" ,
-                                     "app_key":"\(Constants.appKey)" ,
-                                     "health":"\(health)"]
+        var parameters:Parameters?=nil
+        if(health.isEmpty){
+            parameters = ["q":"\(q)",
+                          "app_id":"\(Constants.appId)",
+                          "app_key":"\(Constants.appKey)"]
+        }else{
+                parameters = ["q":"\(q)" ,
+                              "app_id":"\(Constants.appId)" ,
+                              "app_key":"\(Constants.appKey)" ,
+                              "health":"\(health)"]
+        }
 
         AF.request(Constants.baseURL+Constants.endpoint, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: nil, interceptor: nil, requestModifier: nil)
             .validate()

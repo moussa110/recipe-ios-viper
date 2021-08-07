@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class RecipeCell: UITableViewCell , ConfigureRecipesCellProtocol {
 
@@ -22,9 +23,14 @@ class RecipeCell: UITableViewCell , ConfigureRecipesCellProtocol {
     
     func configure(viewModel: RecipeViewModel) {
         
+        recipeImage.sd_setImage(with: URL(string: viewModel.image))
         recipeTitle.text = viewModel.title
         recipeSource.text = viewModel.source
-        healthLabels.text = viewModel.healthLabels[0]
+        var labels = ""
+        for i in viewModel.healthLabels {
+            labels.append("\(i) - ")
+        }
+        healthLabels.text = labels
     }
 
   
