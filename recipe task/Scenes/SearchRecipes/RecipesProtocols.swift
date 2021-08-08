@@ -21,15 +21,20 @@ protocol RecipesRouterProtocol {
 
 protocol RecipesPresenterProtocol : AnyObject {
     var view:RecipesViewProtocol? { get set }
-    func viewDidLoad()
-    func searchRecipe(query q:String , health:Int)
-    func configureRecipesCell(cell:RecipeCell , indexPath:IndexPath)
+    var from:Int {get}
+    var to:Int {get}
     var recipesCount:Int{get}
+    
+    func viewDidLoad()
+    func searchRecipe(query q:String , health:Int , from:Int , to:Int)
+    func getNextRecipesPage(query q:String , health:Int)
+    func configureRecipesCell(cell:RecipeCell , indexPath:IndexPath)
+    
 }
 
 protocol RecipesInteractorInputProtocol {
     var interactorOutput:RecipesInteractorOutputProtocol? { get set }
-    func getRecipes(query:String,health:Int)
+    func getRecipes(query:String,health:Int,from:Int , to:Int)
 }
 
 protocol RecipesInteractorOutputProtocol:AnyObject {

@@ -11,7 +11,7 @@ class RecipesInteractor : RecipesInteractorInputProtocol {
     
     private let networkHandler = NetworkHandler()
     
-    func getRecipes(query:String,health:Int) {
+    func getRecipes(query:String,health:Int , from:Int , to:Int) {
         var healthParams:String=""
         
         switch health {
@@ -21,11 +21,12 @@ class RecipesInteractor : RecipesInteractorInputProtocol {
         default:
             healthParams=""
         }
-        networkHandler.getRecipes(query: query, health: healthParams) { [weak self] data, error in
+        networkHandler.getRecipes(query: query, health: healthParams , from: from , to:to) { [weak self] data, error in
             guard let self = self else{return}
             if let error = error{
                 self.interactorOutput?.recipesFetchedFailed(withError: error)
             }else{
+                print("health---->  \(health)")
                 self.interactorOutput?.recipesFetchedSuccessfully(recipes: data!)
             }
         }

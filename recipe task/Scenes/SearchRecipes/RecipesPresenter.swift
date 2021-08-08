@@ -8,10 +8,29 @@
 import Foundation
 
 class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProtocol{
+  
+    
+    var from: Int = 0
+    
+    var to: Int = 10
+    
+    func getNextRecipesPage(query q:String , health:Int) {
+        if let data = response{
+            if data.more{
+                from = to
+                to = to + 10
+                view?.showLoadingIndicator()
+                interactor.getRecipes(query:q , health:health,from:from , to:to)
+            }
+        }
+    }
+    
     weak var view: RecipesViewProtocol?
     private let interactor:RecipesInteractorInputProtocol
     private let router:RecipesRouterProtocol
-    private var data:RecipeModel? = nil
+    private var response:RecipeModel? = nil
+    private var recipesData:[Recipe] = []
+    
     
     init(view:RecipesViewProtocol , router:RecipesRouterProtocol , interactor:RecipesInteractorInputProtocol) {
         
@@ -21,11 +40,7 @@ class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProto
     }
     
     var recipesCount: Int{
-        if let data = data{
-            return data.hits.count
-        }else{
-            return 0
-        }
+        return recipesData.count
     }
     
     
@@ -36,7 +51,10 @@ class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProto
     
     func recipesFetchedSuccessfully(recipes: RecipeModel) {
         view?.hideLoadingIndicator()
-        data = recipes
+        response = recipes
+        for i in recipes.hits {
+            recipesData.append(i.recipe)
+        }
         view?.reloadData()
     }
     
@@ -45,15 +63,18 @@ class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProto
     }
     
     func configureRecipesCell(cell: RecipeCell, indexPath: IndexPath) {
-        if let recipe = data?.hits[indexPath.row].recipe{
-        let viewModel = RecipeViewModel(recipe: recipe)
+        
+        let viewModel = RecipeViewModel(recipe: recipesData[indexPath.row])
             cell.configure(viewModel: viewModel)
-        }
+        
     }
     
-    func searchRecipe(query q: String , health:Int) {
+    func searchRecipe(query q: String , health:Int , from:Int = 0 , to:Int = 10) {
         view?.showLoadingIndicator()
-        interactor.getRecipes(query:q , health:health)
+        recipesData = []
+        self.from = 0
+        self.to = 10
+        interactor.getRecipes(query:q , health:health,from:from , to:to)
     }
     
     

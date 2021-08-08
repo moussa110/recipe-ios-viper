@@ -11,6 +11,7 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
     
     var presenter: RecipesPresenterProtocol!
     private var query:String? = nil
+    private var filterIndex = 0
   
     
     @IBOutlet weak var loading: UIActivityIndicatorView!
@@ -21,6 +22,7 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
         super.viewDidLoad()
         presenter.viewDidLoad()
         loading.hidesWhenStopped = true
+        recipesTableView.tableFooterView = UIView(frame: .zero)
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
         searchController.searchBar.scopeButtonTitles = ["ALL","Low Sugar","Keto","Vegan"]
@@ -43,6 +45,11 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
         return 120.0
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == presenter.recipesCount - 1{
+            presenter.getNextRecipesPage(query: query!, health: filterIndex)
+        }
+    }
     
     func showLoadingIndicator() {
         print("show loading indicator")
@@ -65,7 +72,7 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //let scopeButton = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
         query = searchBar.text!
-        presenter.searchRecipe(query: self.query! ,health:searchBar.selectedScopeButtonIndex)
+        presenter.searchRecipe(query: self.query! ,health:searchBar.selectedScopeButtonIndex ,from: 0 , to: 10)
         searchController.searchBar.showsScopeBar = true
         searchController.isActive = false
         searchController.searchBar.text = query!
@@ -73,16 +80,29 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchController.searchBar.showsScopeBar = false
-        
         return true
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        presenter.searchRecipe(query: query!, health: selectedScope)
+        filterIndex = selectedScope
+        presenter.searchRecipe(query: query!, health: selectedScope ,from: 0 , to: 10)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchController.searchBar.showsScopeBar = true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if searchBar.text!.isEmpty && text == " " {return false}
+        return searchTextIsValidate(text: text)
+    }
+    func searchTextIsValidate(text:String)->Bool{
+        let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+                       let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
+                       let typedCharacterSet = CharacterSet(charactersIn: text)
+                       let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
+                       return alphabet
     }
 }
 

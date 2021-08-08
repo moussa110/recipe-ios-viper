@@ -81,18 +81,18 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="S3M-oE-4mu">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <rect key="frame" x="188.5" y="469.5" width="37" height="37"/>
                                 <color key="color" name="AccentColor"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="S3M-oE-4mu" firstAttribute="centerX" secondItem="dqM-6b-8md" secondAttribute="centerX" id="49S-FH-4eh"/>
                             <constraint firstAttribute="bottom" secondItem="dqM-6b-8md" secondAttribute="bottom" constant="8" id="4BD-j9-RNj"/>
-                            <constraint firstItem="S3M-oE-4mu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6OV-se-06U"/>
                             <constraint firstItem="dqM-6b-8md" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7H3-jx-hff"/>
-                            <constraint firstItem="S3M-oE-4mu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="AEp-nB-Thg"/>
                             <constraint firstItem="dqM-6b-8md" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="aM7-LE-KUh"/>
+                            <constraint firstItem="S3M-oE-4mu" firstAttribute="centerY" secondItem="dqM-6b-8md" secondAttribute="centerY" id="o2v-rB-XNf"/>
                             <constraint firstAttribute="trailing" secondItem="dqM-6b-8md" secondAttribute="trailing" id="vGN-Vg-tS8"/>
                         </constraints>
                     </view>
