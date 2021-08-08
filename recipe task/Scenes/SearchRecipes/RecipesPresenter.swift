@@ -60,6 +60,7 @@ class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProto
     
     func recipesFetchedFailed(withError error: Error) {
         view?.hideLoadingIndicator()
+        view?.searchFailed(error: error)
     }
     
     func configureRecipesCell(cell: RecipeCell, indexPath: IndexPath) {

@@ -12,6 +12,7 @@ protocol RecipesViewProtocol : AnyObject {
     func showLoadingIndicator()
     func hideLoadingIndicator()
     func reloadData()
+    func searchFailed(error:Error)
     
 }
 

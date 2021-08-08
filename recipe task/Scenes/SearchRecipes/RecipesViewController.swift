@@ -16,6 +16,9 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
     
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var recipesTableView: UITableView!
+   
+    @IBOutlet weak var exploreView: UIStackView!
+    @IBOutlet weak var searchFailedView: UIStackView!
     let searchController = UISearchController()
     
     override func viewDidLoad() {
@@ -53,7 +56,7 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
     
     func showLoadingIndicator() {
         print("show loading indicator")
-        
+        exploreView.isHidden = true
         //recipesTableView.isHidden = true
         loading.startAnimating()
     }
@@ -66,6 +69,9 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
     }
     
     func reloadData() {
+        if presenter.recipesCount != 0 {
+            searchImage.isHidden = true
+        }
         recipesTableView.reloadData()
     }
 
@@ -98,7 +104,7 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
         return searchTextIsValidate(text: text)
     }
     func searchTextIsValidate(text:String)->Bool{
-        let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
+        let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz \n"
                        let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
                        let typedCharacterSet = CharacterSet(charactersIn: text)
                        let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
