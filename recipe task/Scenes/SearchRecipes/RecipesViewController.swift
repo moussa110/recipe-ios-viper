@@ -9,6 +9,8 @@ import UIKit
 
 class RecipesViewController: UIViewController , UITableViewDataSource , UITableViewDelegate , RecipesViewProtocol , UISearchBarDelegate{
     
+    
+    
     var presenter: RecipesPresenterProtocol!
     private var query:String? = nil
     private var filterIndex = 0
@@ -19,11 +21,13 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
    
     @IBOutlet weak var exploreView: UIStackView!
     @IBOutlet weak var searchFailedView: UIStackView!
+    @IBOutlet weak var errorLabel: UILabel!
     let searchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+        searchFailedView.isHidden = true
         loading.hidesWhenStopped = true
         recipesTableView.tableFooterView = UIView(frame: .zero)
         navigationItem.searchController = searchController
@@ -57,6 +61,7 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
     func showLoadingIndicator() {
         print("show loading indicator")
         exploreView.isHidden = true
+        searchFailedView.isHidden = true
         //recipesTableView.isHidden = true
         loading.startAnimating()
     }
@@ -68,9 +73,15 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
         loading.stopAnimating()
     }
     
+    func searchFailed(error: String) {
+        searchFailedView.isHidden = false
+        errorLabel.text = error
+        print("error--->  \(error)")
+    }
+    
     func reloadData() {
         if presenter.recipesCount != 0 {
-            searchImage.isHidden = true
+            exploreView.isHidden = true
         }
         recipesTableView.reloadData()
     }

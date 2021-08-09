@@ -12,7 +12,7 @@ protocol RecipesViewProtocol : AnyObject {
     func showLoadingIndicator()
     func hideLoadingIndicator()
     func reloadData()
-    func searchFailed(error:Error)
+    func searchFailed(error:String)
     
 }
 
@@ -40,7 +40,7 @@ protocol RecipesInteractorInputProtocol {
 
 protocol RecipesInteractorOutputProtocol:AnyObject {
     func recipesFetchedSuccessfully(recipes:RecipeModel)
-    func recipesFetchedFailed(withError error:Error)
+    func recipesFetchedFailed(withError error:String)
 }
 
 protocol ConfigureRecipesCellProtocol {

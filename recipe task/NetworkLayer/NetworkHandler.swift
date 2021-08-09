@@ -10,7 +10,7 @@ import Alamofire
 
 class NetworkHandler{
     
-    func getRecipes(query q:String , health:String,from:Int=0,to:Int=10, compilation:@escaping(RecipeModel? ,Error?)->Void) {
+    func getRecipes(query q:String , health:String,from:Int=0,to:Int=10, compilation:@escaping(RecipeModel? ,String?)->Void) {
         
         var parameters:Parameters?=nil
         if(health.isEmpty){
@@ -33,11 +33,16 @@ class NetworkHandler{
             .responseDecodable(of: RecipeModel.self) { (response) in
                 switch response.result{
                 case .success(let data):
+                    if data.count == 0 {
+                        compilation(nil,"no data found!")
+                    }
                     compilation(data,nil)
-                    print("health----> \(health)   from----> \(from)   to----> \(to)   count-----<\(data.count)")
+                    print("query---->  \(q)    health----> \(health)   from----> \(from)   to----> \(to)   count-----<\(data.count)")
                 case .failure(let error):
-                    compilation(nil,error)
-                    print(error)
+                    if error.responseCode != 429{
+                        compilation(nil,"search failed!")
+                    }
+                    
                 }
 
             }

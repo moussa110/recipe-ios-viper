@@ -58,9 +58,11 @@ class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProto
         view?.reloadData()
     }
     
-    func recipesFetchedFailed(withError error: Error) {
+    func recipesFetchedFailed(withError error: String) {
         view?.hideLoadingIndicator()
         view?.searchFailed(error: error)
+        recipesData = []
+        view?.reloadData()
     }
     
     func configureRecipesCell(cell: RecipeCell, indexPath: IndexPath) {
@@ -73,6 +75,7 @@ class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProto
     func searchRecipe(query q: String , health:Int , from:Int = 0 , to:Int = 10) {
         view?.showLoadingIndicator()
         recipesData = []
+        view?.reloadData()
         self.from = 0
         self.to = 10
         interactor.getRecipes(query:q , health:health,from:from , to:to)

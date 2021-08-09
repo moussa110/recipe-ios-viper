@@ -23,11 +23,10 @@ class RecipesInteractor : RecipesInteractorInputProtocol {
         }
         networkHandler.getRecipes(query: query, health: healthParams , from: from , to:to) { [weak self] data, error in
             guard let self = self else{return}
-            if let error = error{
-                self.interactorOutput?.recipesFetchedFailed(withError: error)
+            if let data = data{
+                self.interactorOutput?.recipesFetchedSuccessfully(recipes: data)
             }else{
-                print("health---->  \(health)")
-                self.interactorOutput?.recipesFetchedSuccessfully(recipes: data!)
+                self.interactorOutput?.recipesFetchedFailed(withError: error!)
             }
         }
     }
