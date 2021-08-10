@@ -7,7 +7,7 @@
 
 import Foundation
 class RecipesInteractor : RecipesInteractorInputProtocol {
-    weak var interactorOutput: RecipesInteractorOutputProtocol?
+    weak var presenter: RecipesInteractorOutputProtocol?
     
     private let networkHandler = NetworkHandler()
     
@@ -24,9 +24,9 @@ class RecipesInteractor : RecipesInteractorInputProtocol {
         networkHandler.getRecipes(query: query, health: healthParams , from: from , to:to) { [weak self] data, error in
             guard let self = self else{return}
             if let data = data{
-                self.interactorOutput?.recipesFetchedSuccessfully(recipes: data)
+                self.presenter?.recipesFetchedSuccessfully(recipes: data)
             }else{
-                self.interactorOutput?.recipesFetchedFailed(withError: error!)
+                self.presenter?.recipesFetchedFailed(withError: error!)
             }
         }
     }

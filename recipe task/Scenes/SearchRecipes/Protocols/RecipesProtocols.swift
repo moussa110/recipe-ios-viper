@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol RecipesViewProtocol : AnyObject {
     var presenter:RecipesPresenterProtocol! { get set }
@@ -17,7 +18,8 @@ protocol RecipesViewProtocol : AnyObject {
 }
 
 protocol RecipesRouterProtocol {
-    
+    static func createModule()->UIViewController
+    func presentRecipeDetailScreen(from view: RecipesViewProtocol, for recipe: RecipeViewModel)
 }
 
 protocol RecipesPresenterProtocol : AnyObject {
@@ -30,11 +32,12 @@ protocol RecipesPresenterProtocol : AnyObject {
     func searchRecipe(query q:String , health:Int , from:Int , to:Int)
     func getNextRecipesPage(query q:String , health:Int)
     func configureRecipesCell(cell:RecipeCell , indexPath:IndexPath)
+    func displayDetails(withIndex i:Int)
     
 }
 
 protocol RecipesInteractorInputProtocol {
-    var interactorOutput:RecipesInteractorOutputProtocol? { get set }
+    var presenter:RecipesInteractorOutputProtocol? { get set }
     func getRecipes(query:String,health:Int,from:Int , to:Int)
 }
 

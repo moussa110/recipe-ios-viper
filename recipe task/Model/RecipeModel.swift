@@ -23,6 +23,7 @@ struct Recipe:Codable {
     let url: String
     let dietLabels: [String]
     let healthLabels: [String]
+    let ingredientLines:[String]
 }
 
 struct RecipeViewModel {
@@ -30,12 +31,16 @@ struct RecipeViewModel {
     var title:String
     var source:String
     var healthLabels:[String]
+    let ingredientLines:[String]
+    let url:String
     
     init(recipe:Recipe) {
         image = recipe.image
         title = recipe.label
         source = recipe.source
         healthLabels = recipe.healthLabels
+        ingredientLines = recipe.ingredientLines
+        url = recipe.url
     }
 }
 

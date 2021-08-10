@@ -14,11 +14,9 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
     var presenter: RecipesPresenterProtocol!
     private var query:String? = nil
     private var filterIndex = 0
-  
     
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var recipesTableView: UITableView!
-   
     @IBOutlet weak var exploreView: UIStackView!
     @IBOutlet weak var searchFailedView: UIStackView!
     @IBOutlet weak var errorLabel: UILabel!
@@ -56,6 +54,10 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
         if indexPath.row == presenter.recipesCount - 1{
             presenter.getNextRecipesPage(query: query!, health: filterIndex)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.displayDetails(withIndex: indexPath.row)
     }
     
     func showLoadingIndicator() {
@@ -114,6 +116,7 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
         if searchBar.text!.isEmpty && text == " " {return false}
         return searchTextIsValidate(text: text)
     }
+    
     func searchTextIsValidate(text:String)->Bool{
         let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz \n"
                        let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)

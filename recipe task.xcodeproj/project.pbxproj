@@ -27,6 +27,11 @@
 		BA4012BE26BC1D7F00573CC4 /* RecipesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4012BD26BC1D7F00573CC4 /* RecipesProtocols.swift */; };
 		BA4012C026BC481800573CC4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4012BF26BC481800573CC4 /* Constants.swift */; };
 		BA5C178026BEDCFD005050F1 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = BA5C177F26BEDCFD005050F1 /* NVActivityIndicatorView */; };
+		BAB6464D26C2811B005D7CB5 /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB6464C26C2811B005D7CB5 /* RecipeDetailsViewController.swift */; };
+		BAB6464F26C281F3005D7CB5 /* RecipeDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB6464E26C281F3005D7CB5 /* RecipeDetailsPresenter.swift */; };
+		BAB6465126C28213005D7CB5 /* RecipeDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB6465026C28213005D7CB5 /* RecipeDetailsInteractor.swift */; };
+		BAB6465326C2822C005D7CB5 /* RecipeDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB6465226C2822C005D7CB5 /* RecipeDetailsRouter.swift */; };
+		BAB6465526C28259005D7CB5 /* RecipeDetailsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB6465426C28259005D7CB5 /* RecipeDetailsProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +75,11 @@
 		BA4012BB26BC1D1000573CC4 /* RecipesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesRouter.swift; sourceTree = "<group>"; };
 		BA4012BD26BC1D7F00573CC4 /* RecipesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesProtocols.swift; sourceTree = "<group>"; };
 		BA4012BF26BC481800573CC4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BAB6464C26C2811B005D7CB5 /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
+		BAB6464E26C281F3005D7CB5 /* RecipeDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsPresenter.swift; sourceTree = "<group>"; };
+		BAB6465026C28213005D7CB5 /* RecipeDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsInteractor.swift; sourceTree = "<group>"; };
+		BAB6465226C2822C005D7CB5 /* RecipeDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsRouter.swift; sourceTree = "<group>"; };
+		BAB6465426C28259005D7CB5 /* RecipeDetailsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +110,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA1041BE26C18F720040416D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BA1CB4D726BB4C6D009490AD /* RecipeCell.swift */,
+				BA1CB4A326BB4577009490AD /* RecipesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BA1041BF26C18F950040416D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BA4012B726BC1CB500573CC4 /* RecipesPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BA1041C026C190120040416D /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				BA4012B926BC1CF800573CC4 /* RecipesInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		BA1041C126C190200040416D /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				BA4012BB26BC1D1000573CC4 /* RecipesRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		BA1041C226C190470040416D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BA4012BD26BC1D7F00573CC4 /* RecipesProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		BA1CB49326BB4577009490AD = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +251,7 @@
 			children = (
 				BA1CB4A526BB4577009490AD /* Main.storyboard */,
 				BA4012B626BC059800573CC4 /* SearchRecipes */,
+				BAB6464626C2802C005D7CB5 /* RecipeDetails */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -207,14 +259,65 @@
 		BA4012B626BC059800573CC4 /* SearchRecipes */ = {
 			isa = PBXGroup;
 			children = (
-				BA1CB4A326BB4577009490AD /* RecipesViewController.swift */,
-				BA1CB4D726BB4C6D009490AD /* RecipeCell.swift */,
-				BA4012B726BC1CB500573CC4 /* RecipesPresenter.swift */,
-				BA4012B926BC1CF800573CC4 /* RecipesInteractor.swift */,
-				BA4012BB26BC1D1000573CC4 /* RecipesRouter.swift */,
-				BA4012BD26BC1D7F00573CC4 /* RecipesProtocols.swift */,
+				BA1041BE26C18F720040416D /* View */,
+				BA1041BF26C18F950040416D /* Presenter */,
+				BA1041C026C190120040416D /* Interactor */,
+				BA1041C126C190200040416D /* Router */,
+				BA1041C226C190470040416D /* Protocols */,
 			);
 			path = SearchRecipes;
+			sourceTree = "<group>";
+		};
+		BAB6464626C2802C005D7CB5 /* RecipeDetails */ = {
+			isa = PBXGroup;
+			children = (
+				BAB6464726C28084005D7CB5 /* View */,
+				BAB6464826C2808C005D7CB5 /* Presenter */,
+				BAB6464926C28098005D7CB5 /* Interactor */,
+				BAB6464A26C280A0005D7CB5 /* Router */,
+				BAB6464B26C280C4005D7CB5 /* Protocols */,
+			);
+			path = RecipeDetails;
+			sourceTree = "<group>";
+		};
+		BAB6464726C28084005D7CB5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BAB6464C26C2811B005D7CB5 /* RecipeDetailsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BAB6464826C2808C005D7CB5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				BAB6464E26C281F3005D7CB5 /* RecipeDetailsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		BAB6464926C28098005D7CB5 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				BAB6465026C28213005D7CB5 /* RecipeDetailsInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		BAB6464A26C280A0005D7CB5 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				BAB6465226C2822C005D7CB5 /* RecipeDetailsRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		BAB6464B26C280C4005D7CB5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BAB6465426C28259005D7CB5 /* RecipeDetailsProtocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,15 +463,20 @@
 				BA4012BE26BC1D7F00573CC4 /* RecipesProtocols.swift in Sources */,
 				BA4012B826BC1CB500573CC4 /* RecipesPresenter.swift in Sources */,
 				BA4012BA26BC1CF800573CC4 /* RecipesInteractor.swift in Sources */,
+				BAB6465326C2822C005D7CB5 /* RecipeDetailsRouter.swift in Sources */,
 				BA1CB4DA26BB55CA009490AD /* RecipeModel.swift in Sources */,
 				BA1CB4A426BB4577009490AD /* RecipesViewController.swift in Sources */,
 				BA4012BC26BC1D1000573CC4 /* RecipesRouter.swift in Sources */,
 				BA1CB4A026BB4577009490AD /* AppDelegate.swift in Sources */,
 				BA1CB4AA26BB4577009490AD /* recipe_task.xcdatamodeld in Sources */,
 				BA1CB4D826BB4C6D009490AD /* RecipeCell.swift in Sources */,
+				BAB6464F26C281F3005D7CB5 /* RecipeDetailsPresenter.swift in Sources */,
 				BA1CB4D626BB4768009490AD /* NetworkHandler.swift in Sources */,
 				BA1CB4A226BB4577009490AD /* SceneDelegate.swift in Sources */,
 				BA4012C026BC481800573CC4 /* Constants.swift in Sources */,
+				BAB6465526C28259005D7CB5 /* RecipeDetailsProtocols.swift in Sources */,
+				BAB6465126C28213005D7CB5 /* RecipeDetailsInteractor.swift in Sources */,
+				BAB6464D26C2811B005D7CB5 /* RecipeDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

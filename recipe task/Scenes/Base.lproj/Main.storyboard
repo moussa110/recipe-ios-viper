@@ -152,34 +152,80 @@
             </objects>
             <point key="canvasLocation" x="247.82608695652175" y="5.3571428571428568"/>
         </scene>
-        <!--View Controller-->
+        <!--Recipe Details View Controller-->
         <scene sceneID="ehf-bS-OHo">
             <objects>
-                <viewController id="OkG-1e-MKD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecipeDetailsViewController" id="OkG-1e-MKD" customClass="RecipeDetailsViewController" customModule="recipe_task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oDd-DS-OgM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IHN-5U-HQe">
-                                <rect key="frame" x="0.0" y="88" width="414" height="295.5"/>
+                            <stackView opaque="NO" contentMode="center" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Djl-KB-LkG">
+                                <rect key="frame" x="0.0" y="397.5" width="414" height="309.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Sautéed Monk Fish" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-Xh-kZH">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="243"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="epA-0E-Rzo">
+                                        <rect key="frame" x="0.0" y="243" width="414" height="66.5"/>
+                                        <string key="text">2 fish fillets
+12 kaffir lime leaves
+salt &amp; pepper</string>
+                                        <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IHN-5U-HQe">
+                                <rect key="frame" x="0.0" y="88" width="414" height="309.5"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iuf-sz-mFH">
+                                <rect key="frame" x="32" y="739" width="350" height="77.5"/>
+                                <color key="backgroundColor" systemColor="linkColor"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                <state key="normal" title="Recipe Website"/>
+                                <connections>
+                                    <action selector="visitWebsite:" destination="OkG-1e-MKD" eventType="touchUpInside" id="Dzj-VD-TPx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7DU-WK-fPz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IHN-5U-HQe" firstAttribute="top" secondItem="7DU-WK-fPz" secondAttribute="top" id="0D2-La-cmV"/>
+                            <constraint firstItem="7DU-WK-fPz" firstAttribute="trailing" secondItem="Djl-KB-LkG" secondAttribute="trailing" id="0mf-Sn-2E4"/>
+                            <constraint firstItem="IHN-5U-HQe" firstAttribute="height" secondItem="7DU-WK-fPz" secondAttribute="height" multiplier="0.4" id="BlS-hD-pOZ"/>
                             <constraint firstItem="IHN-5U-HQe" firstAttribute="leading" secondItem="7DU-WK-fPz" secondAttribute="leading" id="H8p-k1-RoB"/>
                             <constraint firstItem="7DU-WK-fPz" firstAttribute="trailing" secondItem="IHN-5U-HQe" secondAttribute="trailing" id="RdZ-pL-qng"/>
-                            <constraint firstItem="IHN-5U-HQe" firstAttribute="height" secondItem="oDd-DS-OgM" secondAttribute="height" multiplier="0.33" id="ewE-fd-bKQ"/>
+                            <constraint firstItem="Djl-KB-LkG" firstAttribute="top" secondItem="IHN-5U-HQe" secondAttribute="bottom" id="Ssi-iz-03h"/>
+                            <constraint firstItem="iuf-sz-mFH" firstAttribute="height" secondItem="7DU-WK-fPz" secondAttribute="height" multiplier="0.1" id="VYX-G5-Gyx"/>
+                            <constraint firstItem="Djl-KB-LkG" firstAttribute="height" secondItem="7DU-WK-fPz" secondAttribute="height" multiplier="0.4" id="gf8-c1-kbu"/>
+                            <constraint firstItem="iuf-sz-mFH" firstAttribute="top" secondItem="Djl-KB-LkG" secondAttribute="bottom" constant="32" id="hYD-Ok-zof"/>
+                            <constraint firstItem="Djl-KB-LkG" firstAttribute="leading" secondItem="7DU-WK-fPz" secondAttribute="leading" id="k82-Dk-fxh"/>
+                            <constraint firstItem="iuf-sz-mFH" firstAttribute="leading" secondItem="7DU-WK-fPz" secondAttribute="leading" constant="32" id="uZT-Gt-6bh"/>
+                            <constraint firstItem="7DU-WK-fPz" firstAttribute="trailing" secondItem="iuf-sz-mFH" secondAttribute="trailing" constant="32" id="vmJ-dc-N6E"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="vZF-S1-Ylw">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="2a6-Vh-Ab6"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="2a6-Vh-Ab6">
+                            <connections>
+                                <action selector="shareWithOtherApps:" destination="OkG-1e-MKD" id="eoy-V7-puC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ingradientLabel" destination="epA-0E-Rzo" id="5ed-f6-9Ce"/>
+                        <outlet property="recipeImage" destination="IHN-5U-HQe" id="cOe-I7-6EJ"/>
+                        <outlet property="titleLabel" destination="rAy-Xh-kZH" id="JLQ-fp-1PH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GkI-eN-pPz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1416" y="16"/>
+            <point key="canvasLocation" x="1415.9420289855072" y="15.401785714285714"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="W6d-ZX-Gqc">
@@ -205,9 +251,13 @@
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="multiply.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -8,7 +8,10 @@
 import Foundation
 
 class RecipesPresenter : RecipesPresenterProtocol , RecipesInteractorOutputProtocol{
-  
+    func displayDetails(withIndex i:Int) {
+        guard let view = view else { return }
+        router.presentRecipeDetailScreen(from: view, for: RecipeViewModel(recipe: recipesData[i]))
+    }
     
     var from: Int = 0
     
