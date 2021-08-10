@@ -20,14 +20,14 @@ class NetworkHandler{
                           "from":from,
                           "to":to]
         }else{
-                parameters = ["q":"\(q)" ,
-                              "app_id":"\(Constants.appId)" ,
-                              "app_key":"\(Constants.appKey)" ,
-                              "health":"\(health)",
-                              "from":from,
-                              "to":to]
+            parameters = ["q":"\(q)" ,
+                          "app_id":"\(Constants.appId)" ,
+                          "app_key":"\(Constants.appKey)" ,
+                          "health":"\(health)",
+                          "from":from,
+                          "to":to]
         }
-
+        
         AF.request(Constants.baseURL+Constants.endpoint, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: nil, interceptor: nil, requestModifier: nil)
             .validate()
             .responseDecodable(of: RecipeModel.self) { (response) in
@@ -37,14 +37,13 @@ class NetworkHandler{
                         compilation(nil,"no data found!")
                     }
                     compilation(data,nil)
-                    print("query---->  \(q)    health----> \(health)   from----> \(from)   to----> \(to)   count-----<\(data.count)")
                 case .failure(let error):
                     if error.responseCode != 429{
                         compilation(nil,"search failed!")
                     }
                     
                 }
-
+                
             }
     }
 }

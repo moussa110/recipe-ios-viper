@@ -12,7 +12,6 @@
 		BA1CB4A226BB4577009490AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1CB4A126BB4577009490AD /* SceneDelegate.swift */; };
 		BA1CB4A426BB4577009490AD /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1CB4A326BB4577009490AD /* RecipesViewController.swift */; };
 		BA1CB4A726BB4577009490AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA1CB4A526BB4577009490AD /* Main.storyboard */; };
-		BA1CB4AA26BB4577009490AD /* recipe_task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA1CB4A826BB4577009490AD /* recipe_task.xcdatamodeld */; };
 		BA1CB4AC26BB457A009490AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA1CB4AB26BB457A009490AD /* Assets.xcassets */; };
 		BA1CB4AF26BB457A009490AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA1CB4AD26BB457A009490AD /* LaunchScreen.storyboard */; };
 		BA1CB4BA26BB457A009490AD /* recipe_taskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1CB4B926BB457A009490AD /* recipe_taskTests.swift */; };
@@ -57,7 +56,6 @@
 		BA1CB4A126BB4577009490AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BA1CB4A326BB4577009490AD /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
 		BA1CB4A626BB4577009490AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BA1CB4A926BB4577009490AD /* recipe_task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = recipe_task.xcdatamodel; sourceTree = "<group>"; };
 		BA1CB4AB26BB457A009490AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA1CB4AE26BB457A009490AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA1CB4B026BB457A009490AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 				BA4012B226BC032D00573CC4 /* App */,
 				BA4012AF26BC028E00573CC4 /* Model */,
 				BA4012B126BC02F700573CC4 /* NetworkLayer */,
-				BA4012B426BC03D800573CC4 /* CoreData */,
 				BA4012B526BC056D00573CC4 /* Scenes */,
 				BA4012B026BC02A800573CC4 /* Resources */,
 			);
@@ -236,14 +233,6 @@
 				BA1CB49F26BB4577009490AD /* AppDelegate.swift */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		BA4012B426BC03D800573CC4 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				BA1CB4A826BB4577009490AD /* recipe_task.xcdatamodeld */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		BA4012B526BC056D00573CC4 /* Scenes */ = {
@@ -468,7 +457,6 @@
 				BA1CB4A426BB4577009490AD /* RecipesViewController.swift in Sources */,
 				BA4012BC26BC1D1000573CC4 /* RecipesRouter.swift in Sources */,
 				BA1CB4A026BB4577009490AD /* AppDelegate.swift in Sources */,
-				BA1CB4AA26BB4577009490AD /* recipe_task.xcdatamodeld in Sources */,
 				BA1CB4D826BB4C6D009490AD /* RecipeCell.swift in Sources */,
 				BAB6464F26C281F3005D7CB5 /* RecipeDetailsPresenter.swift in Sources */,
 				BA1CB4D626BB4768009490AD /* NetworkHandler.swift in Sources */,
@@ -848,19 +836,6 @@
 			productName = NVActivityIndicatorView;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		BA1CB4A826BB4577009490AD /* recipe_task.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				BA1CB4A926BB4577009490AD /* recipe_task.xcdatamodel */,
-			);
-			currentVersion = BA1CB4A926BB4577009490AD /* recipe_task.xcdatamodel */;
-			path = recipe_task.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = BA1CB49426BB4577009490AD /* Project object */;
 }

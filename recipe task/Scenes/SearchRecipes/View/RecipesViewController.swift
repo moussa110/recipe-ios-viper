@@ -7,33 +7,40 @@
 
 import UIKit
 
-class RecipesViewController: UIViewController , UITableViewDataSource , UITableViewDelegate , RecipesViewProtocol , UISearchBarDelegate{
-    
-    
-    
-    var presenter: RecipesPresenterProtocol!
-    private var query:String? = nil
-    private var filterIndex = 0
-    
+//MARK: - VIEW CONTROLLER
+class RecipesViewController: UIViewController {
+
+  
     @IBOutlet weak var loading: UIActivityIndicatorView!
     @IBOutlet weak var recipesTableView: UITableView!
     @IBOutlet weak var exploreView: UIStackView!
     @IBOutlet weak var searchFailedView: UIStackView!
     @IBOutlet weak var errorLabel: UILabel!
-    let searchController = UISearchController()
+    
+
+    var presenter: RecipesPresenterProtocol!
+    private var query:String? = nil
+    private var filterIndex = 0
+    private let searchController = UISearchController()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.viewDidLoad()
+        initViewes()
+        initTableView()
+        initSearchView()
+
+    }
+
+    private func initViewes(){
         searchFailedView.isHidden = true
         loading.hidesWhenStopped = true
-        recipesTableView.tableFooterView = UIView(frame: .zero)
-        navigationItem.searchController = searchController
-        searchController.searchBar.delegate = self
-        searchController.searchBar.scopeButtonTitles = ["ALL","Low Sugar","Keto","Vegan"]
-        searchController.searchBar.showsScopeBar = true
-        navigationItem.hidesSearchBarWhenScrolling = false
     }
+}
+
+
+//MARK: - TABLE VIEW
+extension RecipesViewController : UITableViewDataSource , UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.recipesCount
@@ -60,38 +67,19 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
         presenter.displayDetails(withIndex: indexPath.row)
     }
     
-    func showLoadingIndicator() {
-        print("show loading indicator")
-        exploreView.isHidden = true
-        searchFailedView.isHidden = true
-        //recipesTableView.isHidden = true
-        loading.startAnimating()
+    private func initTableView(){
+        recipesTableView.tableFooterView = UIView(frame: .zero)
     }
     
-    func hideLoadingIndicator() {
-        print("hide loading indicator")
-        
-        //recipesTableView.isHidden = false
-        loading.stopAnimating()
-    }
-    
-    func searchFailed(error: String) {
-        searchFailedView.isHidden = false
-        errorLabel.text = error
-        print("error--->  \(error)")
-    }
-    
-    func reloadData() {
-        if presenter.recipesCount != 0 {
-            exploreView.isHidden = true
-        }
-        recipesTableView.reloadData()
-    }
+}
 
+//MARK: - SEARCH VIEW
+extension RecipesViewController:UISearchBarDelegate{
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //let scopeButton = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
         query = searchBar.text!
-        presenter.searchRecipe(query: self.query! ,health:searchBar.selectedScopeButtonIndex ,from: 0 , to: 10)
+        presenter.searchRecipe(query: self.query! ,health:searchBar.selectedScopeButtonIndex)
         searchController.searchBar.showsScopeBar = true
         searchController.isActive = false
         searchController.searchBar.text = query!
@@ -105,7 +93,7 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         filterIndex = selectedScope
-        presenter.searchRecipe(query: query!, health: selectedScope ,from: 0 , to: 10)
+        presenter.searchRecipe(query: query!, health: selectedScope )
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -117,12 +105,46 @@ class RecipesViewController: UIViewController , UITableViewDataSource , UITableV
         return searchTextIsValidate(text: text)
     }
     
-    func searchTextIsValidate(text:String)->Bool{
+    private func searchTextIsValidate(text:String)->Bool{
         let allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz \n"
                        let allowedCharacterSet = CharacterSet(charactersIn: allowedCharacters)
                        let typedCharacterSet = CharacterSet(charactersIn: text)
                        let alphabet = allowedCharacterSet.isSuperset(of: typedCharacterSet)
                        return alphabet
     }
-}
+    
+    private func initSearchView(){
+        navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
+        searchController.searchBar.scopeButtonTitles = ["ALL","Low Sugar","Keto","Vegan"]
+        searchController.searchBar.showsScopeBar = true
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
 
+}
+//MARK: - VIEW PROTOCOL
+extension RecipesViewController:RecipesViewProtocol{
+    
+    func showLoadingIndicator() {
+        exploreView.isHidden = true
+        searchFailedView.isHidden = true
+        loading.startAnimating()
+    }
+    
+    func hideLoadingIndicator() {
+        loading.stopAnimating()
+    }
+    
+    func searchFailed(error: String) {
+        searchFailedView.isHidden = false
+        errorLabel.text = error
+    }
+    
+    func reloadData() {
+        if presenter.recipesCount != 0 {
+            exploreView.isHidden = true
+        }
+        recipesTableView.reloadData()
+    }
+}

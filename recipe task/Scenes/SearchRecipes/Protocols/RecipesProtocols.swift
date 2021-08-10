@@ -24,12 +24,13 @@ protocol RecipesRouterProtocol {
 
 protocol RecipesPresenterProtocol : AnyObject {
     var view:RecipesViewProtocol? { get set }
+    var interactor:RecipesInteractorInputProtocol {get set}
+    var router:RecipesRouterProtocol {get set}
     var from:Int {get}
     var to:Int {get}
     var recipesCount:Int{get}
     
-    func viewDidLoad()
-    func searchRecipe(query q:String , health:Int , from:Int , to:Int)
+    func searchRecipe(query q:String , health:Int)
     func getNextRecipesPage(query q:String , health:Int)
     func configureRecipesCell(cell:RecipeCell , indexPath:IndexPath)
     func displayDetails(withIndex i:Int)

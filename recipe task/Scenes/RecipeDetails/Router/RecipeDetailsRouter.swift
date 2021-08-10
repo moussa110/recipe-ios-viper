@@ -19,7 +19,6 @@ class RecipeDetailsRouter:RecipeDetailsRouterProtocol{
         
         view.presenter = presenter
         interactor.presenter = presenter
-        //router.viewController = view
         return view;
     }
     

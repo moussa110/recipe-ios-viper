@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 class RecipeCell: UITableViewCell , ConfigureRecipesCellProtocol {
-
+    //MARK: - OUTLET
     @IBOutlet weak var healthLabels: UILabel!
     @IBOutlet weak var recipeSource: UILabel!
     @IBOutlet weak var recipeTitle: UILabel!
@@ -32,11 +32,11 @@ class RecipeCell: UITableViewCell , ConfigureRecipesCellProtocol {
         }
         healthLabels.text = labels
     }
-
-  
+    
+    
     func setupImageView() {
         recipeImage.layer.cornerRadius = recipeImage.frame.height/2
         recipeImage.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
     }
-
+    
 }
